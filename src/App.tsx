@@ -21,7 +21,7 @@ function HeadingWithChildrenElement({ children }: { children: ReactNode }): Reac
 }
 
 // Default props
-// (The heading prop has a default in it - don't understand this though)
+// (The heading prop has a default "My heading")
 
 const defaultContainerProps = {
   heading: <strong> My heading</strong>
@@ -51,7 +51,7 @@ function App() {
         <strong>Strong children header</strong>
       </HeadingWithChildrenElement>
 
-      <Container>Foo</Container>
+      <Container heading={<strong>Remove me to see "My heading" displayed</strong>}>Foo</Container>
     </div>
   );
 }
