@@ -42,10 +42,14 @@ Container.defaultProps = defaultContainerProps;
 
 // Functional props
 // (Key to remembering how this works: The children function prop here takes in a number and returns a ReactNode)
-function TextWithNumber({ children }: { children: (num: number) => ReactNode }) {
+function TextWithNumber({ header, children }: {
+  header: (num: number) => ReactNode,
+  children: (num: number) => ReactNode
+}) {
   const [state, setState] = useState<number>(1);
   return (
     <div>
+      <h2>{header(state)}</h2>
       <div>{children(state)}</div>
       <div>
         <button onClick={() => setState(state + 1)}>Add button</button>
@@ -68,7 +72,7 @@ function App() {
 
       <Container heading={<strong>Remove me to see "My heading" displayed</strong>}>Foo</Container>
 
-      <TextWithNumber>{(num: number) => <div>Today is {num}</div>}</TextWithNumber>
+      <TextWithNumber header={(num: number) => <span>Header {num}</span>}>{(num: number) => <div>Today is {num}</div>}</TextWithNumber>
     </div>
   );
 }
