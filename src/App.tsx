@@ -59,6 +59,22 @@ function TextWithNumber({ header, children }: {
   );
 }
 
+// Generic functions
+// (Manage list & call render on every item of the list)
+
+function List<ListItem>({ items, render }: {
+  items: ListItem[],
+  render: (item: ListItem) => ReactNode
+}) {
+  return (
+    <ul>
+      {items.map((item, index) => (
+        <li key={index}>{render(item)}</li>
+      ))}
+    </ul>
+  );
+}
+
 function App() {
   return (
     <div className="App">
@@ -73,6 +89,11 @@ function App() {
       <Container heading={<strong>Remove me to see "My heading" displayed</strong>}>Foo</Container>
 
       <TextWithNumber>{(num: number) => <div>Today is {num}</div>}</TextWithNumber>
+
+      <List
+        items={["One", "Two", "Three"]}
+        render={(item: string) => <div>{item.toLowerCase()}</div>}
+      ></List>
     </div>
   );
 }
